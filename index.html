@@ -3,156 +3,143 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>سایت امیرحسن</title>
-  <style>
-    body{margin:0;padding:0;font-family:sans-serif;text-align:center;background:#fafafa;color:#222}
-    h1{margin-top:60px}
-    button{margin-top:25px;padding:8px 16px;border:none;border-radius:6px;cursor:pointer;background:#007bff;color:#fff;font-size:14px}
-  </style>
-</head>
-<body>
-  <h1 id="title-fa">سلام، من امیرحسن هستم</h1>
-  <p id="desc-fa">طراح وب و برنامه‌نویس</p>
-
-  <h1 id="title-en" style="display:none">Hello, I’m Amir Hasan</h1>
-  <p id="desc-en" style="display:none">Web designer & developer</p>
-
-  <button id="toggle">English</button>
-
-  <script>
-    const tFA  = document.querySelectorAll('#title-fa,#desc-fa');
-    const tEN  = document.querySelectorAll('#title-en,#desc-en');
-    const btn  = document.getElementById('toggle');
-    let lang   = 'fa';
-    btn.onclick = ()=>{
-      if(lang==='fa'){
-        tFA.forEach(el=>el.style.display='none');
-        tEN.forEach(el=>el.style.display='block');
-        btn.textContent='فارسی';
-        lang='en';
-      }else{
-        tEN.forEach(el=>el.style.display='none');
-        tFA.forEach(el=>el.style.display='block');
-        btn.textContent='English';
-        lang='fa';
-      }
-    };
-  </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>درباره من | About Me</title>
+  <link rel="stylesheet" href="style.css">
 
+  <!-- سبک‌های اختصاصی این صفحه -->
   <style>
-    body{margin:0;padding:0;font-family:sans-serif;text-align:center;background:#fafafa;color:#222}
-    nav{margin-top:20px}
-    nav a{color:#007bff;text-decoration:none;margin:0 8px}
-    h1{margin-top:50px}
-    p{max-width:650px;margin:16px auto;line-height:1.9}
-    section{max-width:650px;margin:40px auto}
-    ul{list-style:none;padding:0;font-size:16px;line-height:2}
-    a{color:#007bff;text-decoration:none}
-    button{margin-top:30px;padding:8px 16px;border:none;border-radius:6px;cursor:pointer;background:#007bff;color:#fff;font-size:14px}
-    hr{margin:50px auto;width:60%}
+    /* hero gradient */
+    .hero{
+      padding:4rem 1.25rem 3rem;
+      background:linear-gradient(135deg,#0a66ff 0%,#63a4ff 100%);
+      color:#fff;
+      text-align:center;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      animation:fadeIn .8s ease-in-out;
+    }
+    .hero h1{margin:0;font-size:clamp(2.1rem,5vw,2.8rem)}
+    .hero p{margin:.8rem 0 0;font-size:1.1rem;opacity:.9}
+
+    /* fade-in items on scroll */
+    [data-animate]{opacity:0;transform:translateY(30px);transition:all .6s ease-out}
+    [data-animate].in-view{opacity:1;transform:none}
+
+    /* contact grid */
+    .contact-grid{
+      display:grid;
+      gap:1.25rem;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    }
+    .card{
+      background:var(--surface);
+      border-radius:var(--radius);
+      padding:1.5rem;
+      box-shadow:var(--shadow);
+    }
+
+    /* dark-mode */
+    .dark{
+      --background:#1b1e22;
+      --surface:#24272c;
+      --text:#e6e6e6;
+      --shadow:0 2px 10px rgba(0,0,0,.5);
+    }
+    .dark .hero{background:linear-gradient(135deg,#0040c1,#256eff)}
   </style>
 </head>
 
 <body>
-  <!-- نوار لینک‌ها -->
+  <!-- ناوبری + دکمه دارک‌مود -->
   <nav>
-    <a href="index.html"  data-fa="صفحه اصلی" data-en="Home">صفحه اصلی</a> |
-    <a href="about.html"  data-fa="درباره من"  data-en="About Me">درباره من</a>
+    <a href="index.html" data-fa="صفحه اصلی" data-en="Home">صفحه اصلی</a>
+    <a href="about.html" data-fa="درباره من"  data-en="About Me">درباره من</a>
+    <button id="darkToggle" style="margin-right:auto">🌙</button>
   </nav>
 
-  <!-- عنوان -->
-  <h1 data-fa="درباره من" data-en="About Me">درباره من</h1>
+  <main class="container">
 
-  <!-- متن بیوگرافی -->
-  <p id="bio-fa">
-    من امیرحسن آقایی هستم، ۲۱&nbsp;سال سن دارم. در ۱۸&nbsp;سالگی مدرسه را ترک کردم و وارد دنیای اینترنت شدم.
-    همیشه عاشق تحقیق بودم تا علم و دانشم زیاد شود. موفق شدم طراحی سایت، نرم‌افزار و برنامه‌نویسی را یاد بگیرم.
-    حالا به لطف خدا درآمد زیادی کسب کرده‌ام. به شما هم توصیه می‌کنم با من همراه شوید؛
-    در ۱۰&nbsp;روز آینده چیزی به شما یاد می‌دهم که زندگی‌تان را متحول کرده و پولدار شوید.
-  </p>
+    <!-- Hero -->
+    <section class="hero" data-animate>
+      <h1 data-fa="درباره من" data-en="About Me">درباره من</h1>
+      <p id="tagline-fa">ماجراجوی اینترنتی، برنامه‌نویس و کارآفرین</p>
+      <p id="tagline-en" style="display:none">Internet adventurer, developer & entrepreneur</p>
+    </section>
 
-  <!-- نسخهٔ انگلیسی بیو -->
-  <p id="bio-en" style="display:none;direction:ltr">
-    I’m Amir Hasan Aghaei, 21 years old. I dropped out of school at 18 and plunged into the Internet world.
-    My passion for research boosted my knowledge; I learned web design, software and programming.
-    Now, thanks to God, I earn a substantial income. Join me—over the next 10 days I’ll teach you something that
-    can turn your life around and make you rich.
-  </p>
+    <!-- Bio -->
+    <section style="margin-top:3rem" data-animate>
+      <p id="bio-fa">
+        من امیرحسن آقایی هستم، ۲۱&nbsp;ساله. در ۱۸&nbsp;سالگی مدرسه را ترک کردم و وارد دنیای اینترنت شدم.
+        با پشتکار زیاد طراحی سایت، نرم‌افزار و برنامه‌نویسی را آموختم؛ اکنون به لطف خدا درآمد بالایی دارم.
+        می‌خواهم طی ۱۰&nbsp;روز آینده دانشی را با شما به‌اشتراک بگذارم که زندگی‌تان را متحول کند.
+      </p>
 
-  <!-- خط جداکننده -->
-  <hr>
+      <p id="bio-en" style="display:none;direction:ltr">
+        I’m Amir Hasan Aghaei, 21. I dropped out of school at 18 and dove into the Internet world.
+        Through persistence I mastered web design, software, and programming; today—thanks to God—I earn a solid income.
+        Over the next 10 days I’ll share knowledge that can transform your life.
+      </p>
+    </section>
 
-  <!-- بخش پشتیبانی -->
-  <section id="contact">
-    <h2 data-fa="📞 پشتیبانی و ارتباط" data-en="📞 Support & Contact">📞 پشتیبانی و ارتباط</h2>
-    <p data-fa="لطفاً برای مشاوره و هماهنگی به این شماره و ایمیل‌ها مراجعه کنید:"
-       data-en="For consultation and coordination, contact me via:">
-       لطفاً برای مشاوره و هماهنگی به این شماره و ایمیل‌ها مراجعه کنید:
-    </p>
+    <!-- Contact -->
+    <hr>
+    <section id="contact" data-animate>
+      <h2 data-fa="📞 پشتیبانی و ارتباط" data-en="📞 Support & Contact">📞 پشتیبانی و ارتباط</h2>
+      <div class="contact-grid">
+        <div class="card">
+          <h3>📧 <span data-fa="ایمیل اصلی" data-en="Main Email">ایمیل اصلی</span></h3>
+          <a href="mailto:amirt0820@gmail.com">amirt0820@gmail.com</a>
+        </div>
+        <div class="card">
+          <h3>💬 <span data-fa="ایمیل پشتیبانی" data-en="Support Email">ایمیل پشتیبانی</span></h3>
+          <a href="mailto:amir1380a1h@gmail.com">amir1380a1h@gmail.com</a>
+        </div>
+        <div class="card">
+          <h3>📱 <span data-fa="تماس مستقیم" data-en="Direct Call">تماس مستقیم</span></h3>
+          <a href="tel:09210700890">09210700890</a>
+        </div>
+      </div>
+    </section>
 
-    <ul>
-      <li data-fa="📧 ایمیل اصلی: " data-en="📧 Main email: ">
-        📧 ایمیل اصلی:
-        <a href="mailto:amirt0820@gmail.com">amirt0820@gmail.com</a>
-      </li>
-      <li data-fa="📧 ایمیل پشتیبانی: " data-en="📧 Support email: ">
-        📧 ایمیل پشتیبانی:
-        <a href="mailto:amir1380a1h@gmail.com">amir1380a1h@gmail.com</a>
-      </li>
-      <li data-fa="📱 شماره تماس: " data-en="📱 Phone: ">
-        📱 شماره تماس:
-        <a href="tel:09210700890">09210700890</a>
-      </li>
-    </ul>
-  </section>
-
-  <!-- دکمه تغییر زبان -->
-  <button id="toggle">English</button>
+    <!-- زبان -->
+    <div style="text-align:center;margin:3rem 0">
+      <button id="toggle">English</button>
+    </div>
+  </main>
 
   <script>
+    /* زبان */
     const html  = document.documentElement;
     const btn   = document.getElementById('toggle');
-    const faEls = document.querySelectorAll('[data-fa],#bio-fa');
-    const enEls = document.querySelectorAll('[data-en],#bio-en');
+    const faEls = document.querySelectorAll('[data-fa], #tagline-fa, #bio-fa');
+    const enEls = document.querySelectorAll('[data-en], #tagline-en, #bio-en');
     let lang = 'fa';
 
     btn.onclick = () => {
-      if (lang === 'fa') {
-        // نمایش انگلیسی
-        faEls.forEach(el => {
-          if (el.dataset.fa !== undefined) el.textContent = el.dataset.en;
-          else el.style.display = 'none';
-        });
-        enEls.forEach(el => {
-          if (el.dataset.en !== undefined) el.textContent = el.dataset.en;
-          else el.style.display = 'block';
-        });
-        html.lang = 'en'; html.dir = 'ltr';
-        btn.textContent = 'فارسی';
-        lang = 'en';
-      } else {
-        // بازگشت به فارسی
-        faEls.forEach(el => {
-          if (el.dataset.fa !== undefined) el.textContent = el.dataset.fa;
-          else el.style.display = 'block';
-        });
-        enEls.forEach(el => {
-          if (el.dataset.en !== undefined) el.textContent = el.dataset.fa;
-          else el.style.display = 'none';
-        });
-        html.lang = 'fa'; html.dir = 'rtl';
-        btn.textContent = 'English';
-        lang = 'fa';
+      if(lang==='fa'){
+        faEls.forEach(el=>{ if(el.dataset.fa!==undefined) el.textContent=el.dataset.en; else el.style.display='none'; });
+        enEls.forEach(el=>{ if(el.dataset.en!==undefined) el.textContent=el.dataset.en; else el.style.display='block'; });
+        html.lang='en'; html.dir='ltr'; btn.textContent='فارسی'; lang='en';
+      }else{
+        faEls.forEach(el=>{ if(el.dataset.fa!==undefined) el.textContent=el.dataset.fa; else el.style.display='block'; });
+        enEls.forEach(el=>{ if(el.dataset.en!==undefined) el.textContent=el.dataset.fa; else el.style.display='none'; });
+        html.lang='fa'; html.dir='rtl'; btn.textContent='English'; lang='fa';
       }
     };
+
+    /* دارک‌مود */
+    const darkBtn = document.getElementById('darkToggle');
+    darkBtn.onclick = ()=> document.body.classList.toggle('dark');
+
+    /* انیمیشن اسکرول */
+    const reveal = () => {
+      document.querySelectorAll('[data-animate]').forEach(el=>{
+        const rect = el.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 100) el.classList.add('in-view');
+      });
+    };
+    window.addEventListener('scroll',reveal);
+    reveal(); // initial
   </script>
 </body>
 </html>

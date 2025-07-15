@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>سایت امیرحسن</title>
+  <style>
+    body{margin:0;padding:0;font-family:sans-serif;text-align:center;background:#fafafa;color:#222}
+    h1{margin-top:60px}
+    button{margin-top:25px;padding:8px 16px;border:none;border-radius:6px;cursor:pointer;background:#007bff;color:#fff;font-size:14px}
+  </style>
+</head>
+<body>
+  <h1 id="title-fa">سلام، من امیرحسن هستم</h1>
+  <p id="desc-fa">طراح وب و برنامه‌نویس</p>
+
+  <h1 id="title-en" style="display:none">Hello, I’m Amir Hasan</h1>
+  <p id="desc-en" style="display:none">Web designer & developer</p>
+
+  <button id="toggle">English</button>
+
+  <script>
+    const tFA  = document.querySelectorAll('#title-fa,#desc-fa');
+    const tEN  = document.querySelectorAll('#title-en,#desc-en');
+    const btn  = document.getElementById('toggle');
+    let lang   = 'fa';
+    btn.onclick = ()=>{
+      if(lang==='fa'){
+        tFA.forEach(el=>el.style.display='none');
+        tEN.forEach(el=>el.style.display='block');
+        btn.textContent='فارسی';
+        lang='en';
+      }else{
+        tEN.forEach(el=>el.style.display='none');
+        tFA.forEach(el=>el.style.display='block');
+        btn.textContent='English';
+        lang='fa';
+      }
+    };
+  </script>
+</body>
+</html>

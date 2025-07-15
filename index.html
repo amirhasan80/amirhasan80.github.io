@@ -40,3 +40,119 @@
   </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>درباره من | About Me</title>
+
+  <style>
+    body{margin:0;padding:0;font-family:sans-serif;text-align:center;background:#fafafa;color:#222}
+    nav{margin-top:20px}
+    nav a{color:#007bff;text-decoration:none;margin:0 8px}
+    h1{margin-top:50px}
+    p{max-width:650px;margin:16px auto;line-height:1.9}
+    section{max-width:650px;margin:40px auto}
+    ul{list-style:none;padding:0;font-size:16px;line-height:2}
+    a{color:#007bff;text-decoration:none}
+    button{margin-top:30px;padding:8px 16px;border:none;border-radius:6px;cursor:pointer;background:#007bff;color:#fff;font-size:14px}
+    hr{margin:50px auto;width:60%}
+  </style>
+</head>
+
+<body>
+  <!-- نوار لینک‌ها -->
+  <nav>
+    <a href="index.html"  data-fa="صفحه اصلی" data-en="Home">صفحه اصلی</a> |
+    <a href="about.html"  data-fa="درباره من"  data-en="About Me">درباره من</a>
+  </nav>
+
+  <!-- عنوان -->
+  <h1 data-fa="درباره من" data-en="About Me">درباره من</h1>
+
+  <!-- متن بیوگرافی -->
+  <p id="bio-fa">
+    من امیرحسن آقایی هستم، ۲۱&nbsp;سال سن دارم. در ۱۸&nbsp;سالگی مدرسه را ترک کردم و وارد دنیای اینترنت شدم.
+    همیشه عاشق تحقیق بودم تا علم و دانشم زیاد شود. موفق شدم طراحی سایت، نرم‌افزار و برنامه‌نویسی را یاد بگیرم.
+    حالا به لطف خدا درآمد زیادی کسب کرده‌ام. به شما هم توصیه می‌کنم با من همراه شوید؛
+    در ۱۰&nbsp;روز آینده چیزی به شما یاد می‌دهم که زندگی‌تان را متحول کرده و پولدار شوید.
+  </p>
+
+  <!-- نسخهٔ انگلیسی بیو -->
+  <p id="bio-en" style="display:none;direction:ltr">
+    I’m Amir Hasan Aghaei, 21 years old. I dropped out of school at 18 and plunged into the Internet world.
+    My passion for research boosted my knowledge; I learned web design, software and programming.
+    Now, thanks to God, I earn a substantial income. Join me—over the next 10 days I’ll teach you something that
+    can turn your life around and make you rich.
+  </p>
+
+  <!-- خط جداکننده -->
+  <hr>
+
+  <!-- بخش پشتیبانی -->
+  <section id="contact">
+    <h2 data-fa="📞 پشتیبانی و ارتباط" data-en="📞 Support & Contact">📞 پشتیبانی و ارتباط</h2>
+    <p data-fa="لطفاً برای مشاوره و هماهنگی به این شماره و ایمیل‌ها مراجعه کنید:"
+       data-en="For consultation and coordination, contact me via:">
+       لطفاً برای مشاوره و هماهنگی به این شماره و ایمیل‌ها مراجعه کنید:
+    </p>
+
+    <ul>
+      <li data-fa="📧 ایمیل اصلی: " data-en="📧 Main email: ">
+        📧 ایمیل اصلی:
+        <a href="mailto:amirt0820@gmail.com">amirt0820@gmail.com</a>
+      </li>
+      <li data-fa="📧 ایمیل پشتیبانی: " data-en="📧 Support email: ">
+        📧 ایمیل پشتیبانی:
+        <a href="mailto:amir1380a1h@gmail.com">amir1380a1h@gmail.com</a>
+      </li>
+      <li data-fa="📱 شماره تماس: " data-en="📱 Phone: ">
+        📱 شماره تماس:
+        <a href="tel:09210700890">09210700890</a>
+      </li>
+    </ul>
+  </section>
+
+  <!-- دکمه تغییر زبان -->
+  <button id="toggle">English</button>
+
+  <script>
+    const html  = document.documentElement;
+    const btn   = document.getElementById('toggle');
+    const faEls = document.querySelectorAll('[data-fa],#bio-fa');
+    const enEls = document.querySelectorAll('[data-en],#bio-en');
+    let lang = 'fa';
+
+    btn.onclick = () => {
+      if (lang === 'fa') {
+        // نمایش انگلیسی
+        faEls.forEach(el => {
+          if (el.dataset.fa !== undefined) el.textContent = el.dataset.en;
+          else el.style.display = 'none';
+        });
+        enEls.forEach(el => {
+          if (el.dataset.en !== undefined) el.textContent = el.dataset.en;
+          else el.style.display = 'block';
+        });
+        html.lang = 'en'; html.dir = 'ltr';
+        btn.textContent = 'فارسی';
+        lang = 'en';
+      } else {
+        // بازگشت به فارسی
+        faEls.forEach(el => {
+          if (el.dataset.fa !== undefined) el.textContent = el.dataset.fa;
+          else el.style.display = 'block';
+        });
+        enEls.forEach(el => {
+          if (el.dataset.en !== undefined) el.textContent = el.dataset.fa;
+          else el.style.display = 'none';
+        });
+        html.lang = 'fa'; html.dir = 'rtl';
+        btn.textContent = 'English';
+        lang = 'fa';
+      }
+    };
+  </script>
+</body>
+</html>
